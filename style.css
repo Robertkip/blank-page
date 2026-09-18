@@ -1,0 +1,46 @@
+/*
+  Identity kit — calm frame, work is the painting.
+  Type: Inter, system fallback. Two weights: 400 body, 600 heading.
+  Palette: near-black text on warm white, one muted teal accent for links.
+  Spacing: 24px grid, full-bleed centering.
+*/
+
+:root {
+  --text: #171717;
+  --bg: #fafafa;
+  --accent: #0d9488;
+  --font: "Inter", ui-serif, Georgia, serif;
+}
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+.hero a { color: var(--accent); }
+
+.subtle {
+  margin-top: 0.75rem;
+  color: #525252;
+  font-size: 1rem;
+}
