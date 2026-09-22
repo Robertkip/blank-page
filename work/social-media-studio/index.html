@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Media Studio · Robert Kiptoo</title>
+  <meta name="description" content="A social publishing pipeline that posts exactly once, even across a crash and restart.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../"><img src="../../favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="../" aria-current="page">Work</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Title + one-line result -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow accent">Case 2 · FlyRank backend capstone</p>
+        <h1>One blog post in, one campaign out, and every post published exactly once</h1>
+        <div class="case-meta">
+          <span>Python · FastAPI · SQLAlchemy · APScheduler · Ollama</span>
+          <span>14 tests pass</span>
+          <a href="https://github.com/Robertkip/flyrank-capstone-social-studio">View the repo</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap case-body prose">
+        <!-- 2. Context -->
+        <h2>Context</h2>
+        <p>Turn one blog post into platform-specific social posts for Mastodon, X and LinkedIn, let a person approve them, then publish each one on schedule.</p>
+
+        <!-- 3. Constraint -->
+        <h2>Constraint</h2>
+        <p>A retry after a timeout must not make a second post. Publishing to a real account is irreversible, so a crash at the worst moment, after the post went out but before it was marked done, can't be allowed to duplicate it.</p>
+
+        <!-- 4. What I did -->
+        <h2>What I did</h2>
+        <ul>
+          <li><strong>Rules in code, not in hope:</strong> each generated variant is checked against its platform's profile (length, tone, hashtag count). A variant that breaks a rule is blocked with an error naming the rule and never reaches review.</li>
+          <li><strong>A human gate:</strong> only an approved variant can be scheduled. Scheduling anything else is refused with an explicit 4xx.</li>
+          <li><strong>A durable, idempotent scheduler:</strong> the worker claims each due slot atomically, and every publish is guarded by an idempotency key checked before any adapter is called. A recovery pass returns stale slots after a crash.</li>
+        </ul>
+
+        <!-- 5. Evidence -->
+        <h2>Evidence</h2>
+        <figure>
+          <pre class="terminal"><span class="dim">$ pytest -v</span>
+tests/test_worker_recovery.py::
+  test_worker_restart_after_crash_mid_publish_
+  causes_no_duplicate <span class="ok">PASSED</span>
+<span class="ok">14 passed, 2 warnings in 0.44s</span></pre>
+          <figcaption>The crash test claims a slot, records a publish as if the real call succeeded, then "crashes" before marking it done. On restart, exactly one publish record survives (the pre-crash one) and the adapter is never called a second time.</figcaption>
+        </figure>
+
+        <!-- 6. Outcome -->
+        <h2>Outcome</h2>
+        <div class="outcome">
+          <p>One slot is always one post. Which adapter backs a platform (the real Mastodon client or a recording mock) is a config setting, not a code path, so the same guarantees hold in tests and in production.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Next -->
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Got a job that must happen exactly once?</h2>
+        <p>Payments, emails, posts, webhooks: let's talk about yours.</p>
+        <div class="actions">
+          <a class="btn" href="../../contact/">Book a 20-min intro</a>
+          <a class="link-arrow" href="../book-enrichment-api/">Next case: Book-Enrichment API</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="../">Work</a></li>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

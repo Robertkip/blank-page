@@ -3,14 +3,134 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Robert Kiptoo</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Robert Kiptoo · Backend engineer</title>
+  <meta name="description" content="I build backends that don't break when the internet does, and I show you the tests that prove it.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="hero">
-    <h1>Robert Kiptoo</h1>
-    <p class="subtle">Building in the open. Ships coming.</p>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="work/">Work</a>
+        <a href="about/">About</a>
+        <a href="contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Hero: the claim + the one action -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow accent">Backend engineer · Python · FastAPI</p>
+        <h1>I build backends that don't break when the internet does, and I show you the tests that prove it.</h1>
+        <p class="lede">For founders and teams who need the part of the product nobody sees to just work.</p>
+        <div class="actions">
+          <a class="btn" href="contact/">Book a 20-min intro</a>
+          <a class="link-arrow" href="work/">See the work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Featured work, strongest first -->
+    <section aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 id="work-title">Three systems, each with the tests that prove it</h2>
+        <p class="prose">Every case below ships with a test suite and an evidence file you can run yourself.</p>
+        <div class="cards">
+          <article class="card">
+            <img class="card-media" src="assets/lead-capture-widget.png" alt="The lead-capture widget rendered on a customer page served from a different origin than the API" width="1800" height="833" loading="lazy">
+            <div class="body">
+              <h3><a href="work/lead-capture/">Lead-Capture Platform</a></h3>
+              <p>A public form endpoint anyone on the internet can hit, built to survive bad input, floods, bots and failed dependencies.</p>
+              <p class="metric">79 tests · 23/23 live probes pass</p>
+              <a class="link-arrow" href="work/lead-capture/" aria-label="Read the Lead-Capture Platform case">Read the case</a>
+            </div>
+          </article>
+          <article class="card">
+            <pre class="terminal" role="img" aria-label="Test output: worker restart after a crash mid-publish causes no duplicate post, passed"><span class="dim">$ pytest tests/test_worker_recovery.py</span>
+test_worker_restart_after_crash_
+  mid_publish_causes_no_duplicate
+<span class="ok">PASSED</span>
+<span class="dim">14 passed in 0.44s</span></pre>
+            <div class="body">
+              <h3><a href="work/social-media-studio/">Social Media Studio</a></h3>
+              <p>Turns one blog post into an approved, scheduled campaign that publishes exactly once, even if the server crashes mid-post.</p>
+              <p class="metric">Exactly-once publishing · 14 tests pass</p>
+              <a class="link-arrow" href="work/social-media-studio/" aria-label="Read the Social Media Studio case">Read the case</a>
+            </div>
+          </article>
+          <article class="card">
+            <pre class="terminal" role="img" aria-label="Eval output: qwen2.5 7b scored 8 of 8 on category"><span class="dim">$ python evals/run_eval.py</span>
+model: qwen2.5:7b
+cases: 8 (6 clear, 2 hard)
+<span class="ok">SCORE: 8/8 on category (100%)</span>
+<span class="dim">cold first run: 7/8 (timeout)</span></pre>
+            <div class="body">
+              <h3><a href="work/book-enrichment-api/">Book-Enrichment API</a></h3>
+              <p>Puts an unpredictable language model behind a strict JSON contract, so callers never receive text the model wrote directly.</p>
+              <p class="metric">8/8 on the eval, cold-start miss reported</p>
+              <a class="link-arrow" href="work/book-enrichment-api/" aria-label="Read the Book-Enrichment API case">Read the case</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Proof strip -->
+    <section aria-labelledby="proof-title">
+      <div class="wrap">
+        <h2 id="proof-title">The receipts</h2>
+        <div class="proof">
+          <div><strong>79</strong><span>automated tests on the lead-capture API</span></div>
+          <div><strong>23/23</strong><span>live acceptance probes passing</span></div>
+          <div><strong>1×</strong><span>posts published exactly once, across a crash</span></div>
+          <div><strong>0</strong><span>raw model output reaching an API caller</span></div>
+        </div>
+        <p class="tools">Python · FastAPI · PostgreSQL · SQLAlchemy · Docker · pytest · Ollama / OpenRouter</p>
+      </div>
+    </section>
+
+    <!-- 4. About teaser -->
+    <section aria-labelledby="about-title">
+      <div class="wrap teaser">
+        <img class="avatar" src="assets/profile.jpg" alt="Robert Kiptoo" width="96" height="96">
+        <div class="text">
+          <h2 id="about-title">Hi, I'm Robert</h2>
+          <p>Software engineer on the FlyRank backend track. I treat "it works" as a claim that needs evidence, so every system I ship comes with the tests and transcripts that back it up.</p>
+          <a class="link-arrow" href="about/">More about how I work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CTA band: the one action -->
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Have something that has to keep working?</h2>
+        <p>Tell me about it in 20 minutes. No pitch deck needed, just the problem.</p>
+        <a class="btn" href="contact/">Book a 20-min intro</a>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="work/">Work</a></li>
+        <li><a href="about/">About</a></li>
+        <li><a href="contact/">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>

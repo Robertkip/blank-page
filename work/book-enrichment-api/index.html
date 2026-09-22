@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book-Enrichment API · Robert Kiptoo</title>
+  <meta name="description" content="A language model behind a strict JSON contract: 8/8 on a hand-labelled eval, with the cold-start miss reported.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../"><img src="../../favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="../" aria-current="page">Work</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Title + one-line result -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow accent">Case 3 · FlyRank internship, week 7</p>
+        <h1>A language model behind a contract it isn't allowed to break</h1>
+        <div class="case-meta">
+          <span>Python · FastAPI · Ollama / OpenRouter</span>
+          <span>8/8 on a hand-labelled eval</span>
+          <a href="https://github.com/Robertkip/flyrank-w7-enrich">View the repo</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap case-body prose">
+        <!-- 2. Context -->
+        <h2>Context</h2>
+        <p>My scraper collected 60 books with titles, prices and blurbs, but no genre, because the pages never stated one. A person can read a blurb and say "that's a thriller" in two seconds. <code>POST /enrich</code> does that in code: genre from a fixed list of ten, audience, a one-sentence summary and data-quality flags.</p>
+
+        <!-- 3. Constraint -->
+        <h2>Constraint</h2>
+        <p>Language models don't reliably follow instructions. The caller must never receive text the model wrote directly: only values this API has checked, in exactly the promised shape.</p>
+
+        <!-- 4. What I did -->
+        <h2>What I did</h2>
+        <ul>
+          <li><strong>A strict schema:</strong> every answer is validated. If it doesn't fit, the model is told exactly what was wrong and gets <em>one</em> more try. If it fails again, the caller gets a clear error and the bad answer goes to a quarantine file for a human.</li>
+          <li><strong>My own retry logic:</strong> I turned off the SDK's silent retries, so one request is one model call unless I decided otherwise.</li>
+          <li><strong>An honest eval:</strong> eight cases hand-labelled from real scraped records before any were run, including two deliberately hard ones. One has an empty blurb and must answer with low confidence, not a confident guess.</li>
+        </ul>
+
+        <!-- 5. Evidence -->
+        <h2>Evidence</h2>
+        <figure>
+          <pre class="terminal"><span class="dim">$ curl -X POST localhost:8000/enrich -d '{"title": "Behind Closed Doors", ...}'</span>
+{
+  "category": "mystery-thriller",
+  "audience": "adult",
+  "summary": "A mystery-thriller about a seemingly perfect
+              couple hiding a terrifying secret.",
+  "quality_flags": [],
+  "confidence": 0.9
+}</pre>
+          <figcaption>A real response: only checked values, in the promised shape.</figcaption>
+        </figure>
+
+        <!-- 6. Outcome -->
+        <h2>Outcome</h2>
+        <div class="outcome">
+          <p><strong>8/8 on category</strong> with qwen2.5:7b, against 2/8 for llama3.2:1b on the same prompt and cases.</p>
+          <p>The honest asterisk: the <strong>first run scored 7/8</strong>. The miss wasn't a wrong answer. The first case timed out while the model was still loading into memory. I report both, because the cold-start failure is the number that would wake someone up at 3am.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Next -->
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Putting AI into a product that has to be dependable?</h2>
+        <p>Let's talk about where the model can and can't be trusted.</p>
+        <div class="actions">
+          <a class="btn" href="../../contact/">Book a 20-min intro</a>
+          <a class="link-arrow" href="../lead-capture/">Back to case 1: Lead-Capture Platform</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="../">Work</a></li>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

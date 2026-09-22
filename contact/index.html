@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · Robert Kiptoo</title>
+  <meta name="description" content="Book a 20-minute intro with Robert Kiptoo.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="../work/">Work</a>
+        <a href="../about/">About</a>
+        <a href="./" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!--
+    SETUP: three placeholders to replace before going live.
+      1. CAL_LINK       the Cal.com booking link          (search: cal.com/YOUR-HANDLE)
+      2. FORM_ENDPOINT  the Formspree form endpoint       (search: formspree.io/f/YOUR_FORM_ID)
+      3. EMAIL          the public contact email          (search: you@example.com)
+  -->
+
+  <main id="main">
+    <!-- 1. Heading -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow accent">Contact</p>
+        <h1>Book a 20-min intro</h1>
+        <p class="lede">Pick a slot, or send two sentences about your project. <span class="promise">I reply within 24 hours on weekdays.</span></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap contact-grid">
+        <!-- 2. Calendar: the primary path -->
+        <div>
+          <h2>Pick a time</h2>
+          <p>Twenty minutes, video or phone. Bring the problem, not a pitch deck.</p>
+          <p><a class="btn" href="https://cal.com/YOUR-HANDLE/20min">Book a 20-min intro</a></p>
+
+          <!-- 5. Fallback -->
+          <h3>Prefer email?</h3>
+          <p><a href="mailto:you@example.com">you@example.com</a></p>
+        </div>
+
+        <!-- 3. Form -->
+        <div>
+          <h2>Or send a message</h2>
+          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label>Name
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>Your project in two sentences
+              <textarea name="project" required></textarea>
+            </label>
+            <label>Timeline <span class="hint">(optional)</span>
+              <input type="text" name="timeline" placeholder="e.g. next month">
+            </label>
+            <!-- Honeypot: real people never see or fill this -->
+            <label class="hp" aria-hidden="true">Leave this empty
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+            </label>
+            <p class="form-status" role="status" aria-live="polite"></p>
+            <button class="btn" type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="../work/">Work</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="./">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Send the form without leaving the page, then go to /thank-you.
+    // Without JavaScript, the form still posts to Formspree normally.
+    const form = document.getElementById('contact-form');
+    const status = form.querySelector('.form-status');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (form.action.includes('YOUR_FORM_ID')) {
+        status.textContent = 'The form isn\'t connected yet. Please use the email link for now.';
+        return;
+      }
+      const button = form.querySelector('button');
+      button.disabled = true;
+      status.textContent = '';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(response.status);
+        window.location.href = '../thank-you/';
+      } catch {
+        status.textContent = 'That didn\'t send. Please try again, or use the email link.';
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

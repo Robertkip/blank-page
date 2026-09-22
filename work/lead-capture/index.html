@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lead-Capture Platform · Robert Kiptoo</title>
+  <meta name="description" content="A lead-capture API that stays up when the public internet hits it. 79 tests, 23/23 live probes.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../"><img src="../../favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="../" aria-current="page">Work</a>
+        <a href="../../about/">About</a>
+        <a href="../../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Title + one-line result -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow accent">Case 1 · FlyRank backend capstone</p>
+        <h1>A lead-capture API that stays up when the public internet hits it</h1>
+        <div class="case-meta">
+          <span>Python · FastAPI · PostgreSQL · Docker</span>
+          <span>79 tests · 23/23 live probes</span>
+          <a href="https://github.com/Robertkip/flyrank-capstone-lead-capture">View the repo</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap case-body prose">
+        <!-- 2. Context -->
+        <h2>Context</h2>
+        <p>A business defines a form widget in an authenticated dashboard, pastes one <code>&lt;script&gt;</code> tag onto any website, and the leads it captures arrive validated, spam-filtered, geo-enriched and queryable.</p>
+
+        <!-- 3. Constraint -->
+        <h2>Constraint</h2>
+        <p>The submission endpoint is reachable by the entire public internet. So the client is never trusted, the traffic is never predictable, and a broken dependency has to degrade the response rather than destroy it.</p>
+
+        <!-- 4. What I did -->
+        <h2>What I did</h2>
+        <ul>
+          <li><strong>Defended the front door:</strong> payload validation that returns a clean 4xx (never a 500), an origin allow-list, per-IP and per-widget rate limits, and honeypot plus fill-time spam checks.</li>
+          <li><strong>Made dependencies optional:</strong> geo enrichment tries provider A, falls back to provider B, and stores the lead anyway if both fail.</li>
+          <li><strong>Kept side effects out of the request:</strong> the lead and its email/webhook job are written in one transaction, and a background outbox worker retries with exponential backoff, then dead-letters and alerts.</li>
+        </ul>
+
+        <!-- 5. Evidence -->
+        <h2>Evidence</h2>
+        <figure>
+          <img src="../../assets/lead-capture-widget.png" alt="The lead-capture widget rendered on a customer page served from a different origin than the API" width="1800" height="833" loading="lazy">
+          <figcaption>The widget rendering on a customer page served from a different origin than the API.</figcaption>
+        </figure>
+        <figure>
+          <pre class="terminal"><span class="dim">PROBE 1: a valid cross-origin submission is stored,
+2xx, and visible on the dashboard</span>
+  access-control-allow-origin: *
+  <span class="ok">PASS</span>  submission accepted (got 201)
+  <span class="ok">PASS</span>  visible on dashboard (got 1)
+  <span class="ok">PASS</span>  correct row returned (got probe1@example.com)
+  enriched country: Kenya
+
+<span class="dim">$ docker compose exec api pytest -q</span>
+<span class="ok">79 passed in 46.12s</span></pre>
+          <figcaption>Real output from <code>./scripts/probes.sh</code> and the test suite, against a running stack.</figcaption>
+        </figure>
+
+        <!-- 6. Outcome -->
+        <h2>Outcome</h2>
+        <div class="outcome">
+          <p>All six acceptance probes pass: <strong>23 assertions, 0 failures</strong>. Bad payloads get a 4xx, floods get a 429 while the API stays up, bots are silently dropped, and a failing email or webhook can never turn a successful submission into an error.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Next -->
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Need an endpoint that survives the real internet?</h2>
+        <p>Let's talk about what yours has to withstand.</p>
+        <div class="actions">
+          <a class="btn" href="../../contact/">Book a 20-min intro</a>
+          <a class="link-arrow" href="../social-media-studio/">Next case: Social Media Studio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="../">Work</a></li>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work · Robert Kiptoo</title>
+  <meta name="description" content="Three backend systems, each with the tests that prove it.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="./" aria-current="page">Work</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Intro -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow accent">Work</p>
+        <h1>Three systems, each with the tests that prove it.</h1>
+        <p class="lede">Strongest first. Every case links to its repo, and every number comes from a test run you can reproduce.</p>
+      </div>
+    </section>
+
+    <!-- 2–4. Case cards: problem → what I shipped → result -->
+    <section aria-label="Case studies">
+      <div class="wrap">
+        <div class="cards">
+          <article class="card">
+            <img class="card-media" src="../assets/lead-capture-widget.png" alt="The lead-capture widget rendered on a customer page served from a different origin than the API" width="1800" height="833" loading="lazy">
+            <div class="body">
+              <h3><a href="lead-capture/">Lead-Capture Platform</a></h3>
+              <p><strong>Problem:</strong> a form endpoint open to the whole internet, where nothing can be trusted.</p>
+              <p><strong>Shipped:</strong> an embeddable widget and API with validation, rate limits, spam filtering, geo fallback and a transactional outbox.</p>
+              <p class="metric">79 tests · 23/23 live probes pass</p>
+              <a class="link-arrow" href="lead-capture/" aria-label="Read the Lead-Capture Platform case">Read the case</a>
+            </div>
+          </article>
+          <article class="card">
+            <pre class="terminal" role="img" aria-label="Test output: worker restart after a crash mid-publish causes no duplicate post, passed"><span class="dim">$ pytest tests/test_worker_recovery.py</span>
+test_worker_restart_after_crash_
+  mid_publish_causes_no_duplicate
+<span class="ok">PASSED</span>
+<span class="dim">14 passed in 0.44s</span></pre>
+            <div class="body">
+              <h3><a href="social-media-studio/">Social Media Studio</a></h3>
+              <p><strong>Problem:</strong> a retry after a timeout must never make a second post.</p>
+              <p><strong>Shipped:</strong> ingest, AI variants, human review and a durable scheduler guarded by idempotency keys.</p>
+              <p class="metric">Exactly-once publishing · 14 tests pass</p>
+              <a class="link-arrow" href="social-media-studio/" aria-label="Read the Social Media Studio case">Read the case</a>
+            </div>
+          </article>
+          <article class="card">
+            <pre class="terminal" role="img" aria-label="Eval output: qwen2.5 7b scored 8 of 8 on category"><span class="dim">$ python evals/run_eval.py</span>
+model: qwen2.5:7b
+cases: 8 (6 clear, 2 hard)
+<span class="ok">SCORE: 8/8 on category (100%)</span>
+<span class="dim">cold first run: 7/8 (timeout)</span></pre>
+            <div class="body">
+              <h3><a href="book-enrichment-api/">Book-Enrichment API</a></h3>
+              <p><strong>Problem:</strong> scraped books had no genre, and a language model's answers can't be trusted as-is.</p>
+              <p><strong>Shipped:</strong> a strict-schema endpoint with one guided retry, a quarantine file and a hand-labelled eval.</p>
+              <p class="metric">8/8 on the eval, cold-start miss reported</p>
+              <a class="link-arrow" href="book-enrichment-api/" aria-label="Read the Book-Enrichment API case">Read the case</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CTA band -->
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Want this kind of reliability in your product?</h2>
+        <p>Twenty minutes is enough to tell whether I can help.</p>
+        <a class="btn" href="../contact/">Book a 20-min intro</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="./">Work</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../contact/">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

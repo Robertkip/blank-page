@@ -1,35 +1,23 @@
-# Identity Kit (Week 3) — foundation for the build week
+# Identity Kit (Week 3)
 
-This is the single source of truth for how the site looks. Keep every section I build consistent with it.
+The single source of truth for how the site looks. `style.css` carries these values as CSS variables in `:root`.
 
 ## Type
-- Heading font: **Inter**, weight 600 — system fallback `ui-serif`.
-- Body font: **Inter**, weight 400 — same family, fewer fonts, less to maintain.
-- If Inter fails to load, the system-serif fallback still reads cleanly.
+- Headings: **Bricolage Grotesque**, weight 600.
+- Body: **Instrument Sans**, weight 400 (500 for nav and buttons).
+- Both are free Google Fonts, with a system sans-serif fallback.
 
-## Palette (hex)
-| Role      | Hex     | Use          |
-|-----------|---------|--------------|
-| Text      | `#171717` | near-black, body & headings |
-| Background| `#fafafa` | warm white page background |
-| Accent    | `#0d9488` | teal — links, accents, CTA underline |
-| Muted     | `#525252` | secondary text (subtle notes) |
+## Palette
+| Role       | Name      | Hex       | Use |
+|------------|-----------|-----------|-----|
+| Main       | Deep Teal | `#1F4E5F` | links, buttons, CTA band |
+| Text       | Ink       | `#15191C` | body and headings |
+| Background | Paper     | `#F6F7F5` | page background |
+| Accent     | Ochre     | `#C9973A` | at most once per view |
 
 ## Logo / favicon
-- `favicon.svg` — a single, flat initial ("K") mark. Tiny detail, feels finished.
-- No animated gradients: the work must be the loudest thing on the page.
+`favicon.svg`: a clean "RK" monogram, also used as the header mark.
 
-## Style note (the mood, one sentence)
-Calm and confident: generous whitespace, a 24px grid, centered content, so the code and case studies read as the work — not the design.
-
-## Contrast (checked)
-- `#171717` on `#fafafa` — strong (7:1+). Readable in sunlit phone screens.
-- Accent `#0d9488` — visible against `#fafaff`; safe for links.
-
-## Placeholder for your real content
-Where your actual identity kit goes (the one you generated with your own proof):
-- Your real two fonts and their hex codes.
-- Your real logo or favicon.
-- Your real one-line claim (see content-map.md).
-
-This file gets overwritten with your real kit; the CSS above already reads these values from `:root`.
+## Style note
+Fonts: Bricolage Grotesque (headings, 600) and Instrument Sans (body, 400). Colors: Deep Teal #1F4E5F (main), Ink #15191C (text), Paper #F6F7F5 (background), Ochre #C9973A (accent, used sparingly).
+Mood: calm and considered. A quiet teal frame with one warm ochre highlight, so the work is always the loudest thing on the page.

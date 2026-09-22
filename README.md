@@ -1,16 +1,46 @@
 # blank-page
 
-> **Empty but live.** A near-blank portfolio page — just a name — live on a free URL. Week 4 of the AI Fluency build.
+> Robert Kiptoo's portfolio: *I build backends that don't break when the internet does, and I show you the tests that prove it.* Started as the Week 4 "empty but live" page; now holds the full site built from the Week 3 content map.
 
-- **`index.html`** — the live page (says the name).
-- **`style.css`** — the identity kit, as CSS variables.
-- **`rationale.md`** — the written stack rationale (chosen + alternatives).
-- **`identity-kit.md`** / **`content-map.md`** — the Week 3 foundation, loaded in one place for build week.
+Plain HTML + CSS for GitHub Pages. No build step. See `rationale.md` for why.
 
-## Stack
+```
+index.html                       Home: claim, 3 featured cases, receipts, about teaser, CTA
+work/index.html                  Work: the 3 cases, strongest first
+work/lead-capture/               Case 1
+work/social-media-studio/        Case 2
+work/book-enrichment-api/        Case 3
+about/index.html                 About
+contact/index.html               Contact: the one action (Book a 20-min intro)
+thank-you/index.html             After the form is sent
+404.html                         Missing pages
+style.css                        The identity kit as CSS variables
+```
 
-Plain HTML + CSS written with AI, hosted on **GitHub Pages**. Chosen because it is the smallest stack that ships a real URL, that I can maintain and explain, and whose repo is itself proof I can ship. See `rationale.md` for the full three-option write-up.
+Docs: `rationale.md` (stack choice), `identity-kit.md`, `content-map.md`.
 
-## Live
+## Before going live
 
-This site is published with GitHub Pages from the `main` branch. Push to `main` to redeploy.
+1. In `contact/index.html`, replace the three placeholders listed in the SETUP comment:
+   - `cal.com/YOUR-HANDLE/20min` → your Cal.com booking link
+   - `formspree.io/f/YOUR_FORM_ID` → your Formspree form endpoint
+   - `you@example.com` → your public contact email
+2. Make the case-study repos public, or their "View the repo" links 404 for visitors:
+   - `Robertkip/flyrank-capstone-lead-capture` (Case 1)
+   - `Robertkip/flyrank-w7-enrich` (Case 3)
+   - `Robertkip/flyrank-capstone-social-studio` (Case 2) is already public.
+3. When a backend-focused CV exists, uncomment the CV link in `about/index.html`.
+
+`404.html` works on Netlify, a custom domain, or a `username.github.io/<repo>/` project site with no edits. Only a `username.github.io` root site needs its base set to `/` by hand (see the comment in the file).
+
+## Preview locally
+
+```bash
+python3 -m http.server 8000   # then open http://localhost:8000
+```
+
+## Deploy
+
+GitHub Pages on a free account only serves **public** repos. Make this repo public, then Settings → Pages → Deploy from branch → `main` / root. The site is at `https://robertkip.github.io/blank-page/` and redeploys on every push to `main`. `.nojekyll` tells Pages to serve the files as-is.
+
+No-git fallback: drag this folder onto [app.netlify.com/drop](https://app.netlify.com/drop).

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · Robert Kiptoo</title>
+  <meta name="description" content="Robert Kiptoo, backend engineer. How I work and what I use.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../favicon.svg" alt="" width="32" height="32"><span>Robert Kiptoo</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="../work/">Work</a>
+        <a href="./" aria-current="page">About</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1–2. Photo + name, who I am (≤120 words) -->
+    <section class="hero">
+      <div class="wrap teaser">
+        <img class="avatar" src="../assets/profile.jpg" alt="Robert Kiptoo" width="96" height="96">
+        <div class="text prose">
+          <p class="eyebrow accent">About</p>
+          <h1>Robert Kiptoo</h1>
+          <p>I'm a software engineer with a Diploma (Hons) in Software Engineering, currently on the FlyRank internship's backend track. I build the part of a product that has to keep working when users send bad input, traffic spikes or a dependency goes down.</p>
+          <p>I don't ask anyone to take "it works" on trust. Every system I ship comes with the tests, probes and transcripts that show it working, and says honestly where it doesn't yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. How I work -->
+    <section aria-labelledby="how-title">
+      <div class="wrap prose case-body">
+        <h2 id="how-title">How I work</h2>
+        <ul>
+          <li><strong>Tests first.</strong> The requirement becomes a test before it becomes code.</li>
+          <li><strong>An evidence file for every requirement.</strong> One pasted proof per checkbox, from a real run.</li>
+          <li><strong>A weekly demo.</strong> You see working software every week, not a status update.</li>
+          <li><strong>Degrade, don't crash.</strong> When a dependency fails, the response gets smaller, not broken.</li>
+        </ul>
+
+        <!-- 4. Tools -->
+        <h2>Tools</h2>
+        <p>Python, FastAPI, PostgreSQL, SQLAlchemy, Docker, pytest, and LLM APIs (Ollama and OpenRouter).</p>
+
+        <!-- 5. CV (secondary) -->
+        <!-- TODO: link a backend-focused CV here once it exists, e.g. <a href="../assets/robert-kiptoo-cv.pdf">Download my CV (PDF)</a> -->
+      </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Sound like a fit?</h2>
+        <p>Tell me what you're building and what it has to survive.</p>
+        <a class="btn" href="../contact/">Book a 20-min intro</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Robert Kiptoo</p>
+      <ul>
+        <li><a href="../work/">Work</a></li>
+        <li><a href="./">About</a></li>
+        <li><a href="../contact/">Contact</a></li>
+        <li><a href="https://github.com/Robertkip">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/robert-kimaiyo-9ab814220">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
