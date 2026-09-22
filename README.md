@@ -21,7 +21,7 @@ Docs: `rationale.md` (stack choice), `identity-kit.md`, `content-map.md`.
 
 ## Before going live
 
-1. In `contact/index.html`, replace the three placeholders listed in the SETUP comment:
+1. In `contact/index.html`, replace the three placeholders listed in the SETUP comment. The booking button and the form stay `hidden` until you do; remove `hidden` from each block once its link or ID is in.
    - `cal.com/YOUR-HANDLE/20min` → your Cal.com booking link
    - `formspree.io/f/YOUR_FORM_ID` → your Formspree form endpoint
    - `you@example.com` → your public contact email

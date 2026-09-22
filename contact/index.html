@@ -26,9 +26,12 @@
   </header>
 
   <!--
-    SETUP: three placeholders to replace before going live.
+    SETUP: three placeholders. Until 1 and 2 are set, their blocks carry `hidden`.
       1. CAL_LINK       the Cal.com booking link          (search: cal.com/YOUR-HANDLE)
+                        then remove `hidden` from the "Pick a time" block and
+                        start the lede with "Pick a slot, or send…"
       2. FORM_ENDPOINT  the Formspree form endpoint       (search: formspree.io/f/YOUR_FORM_ID)
+                        then remove `hidden` from the form block
       3. EMAIL          the public contact email          (search: you@example.com)
   -->
 
@@ -38,25 +41,27 @@
       <div class="wrap">
         <p class="eyebrow accent">Contact</p>
         <h1>Book a 20-min intro</h1>
-        <p class="lede">Pick a slot, or send two sentences about your project. <span class="promise">I reply within 24 hours on weekdays.</span></p>
+        <p class="lede">Send two sentences about your project. <span class="promise">I reply within 24 hours on weekdays.</span></p>
       </div>
     </section>
 
     <section>
       <div class="wrap contact-grid">
-        <!-- 2. Calendar: the primary path -->
         <div>
-          <h2>Pick a time</h2>
-          <p>Twenty minutes, video or phone. Bring the problem, not a pitch deck.</p>
-          <p><a class="btn" href="https://cal.com/YOUR-HANDLE/20min">Book a 20-min intro</a></p>
+          <!-- 2. Calendar: the primary path (hidden until CAL_LINK is set) -->
+          <div hidden>
+            <h2>Pick a time</h2>
+            <p>Twenty minutes, video or phone. Bring the problem, not a pitch deck.</p>
+            <p><a class="btn" href="https://cal.com/YOUR-HANDLE/20min">Book a 20-min intro</a></p>
+          </div>
 
-          <!-- 5. Fallback -->
-          <h3>Prefer email?</h3>
+          <!-- 5. Email -->
+          <h2>Email me</h2>
           <p><a href="mailto:you@example.com">you@example.com</a></p>
         </div>
 
-        <!-- 3. Form -->
-        <div>
+        <!-- 3. Form (hidden until FORM_ENDPOINT is set) -->
+        <div hidden>
           <h2>Or send a message</h2>
           <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <label>Name
