@@ -17,7 +17,7 @@ thank-you/index.html             After the form is sent
 style.css                        The identity kit as CSS variables
 ```
 
-Docs: `rationale.md` (stack choice), `identity-kit.md`, `content-map.md`.
+Docs: `rationale.md` (stack choice), `identity-kit.md`, `content-map.md`, `ADD-A-CASE.md` (how to add the next case study).
 
 ## Before going live
 
