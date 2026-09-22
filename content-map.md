@@ -28,8 +28,9 @@ Utilities: `/thank-you/` (points to the Lead-Capture case) and `404` (points bac
 
 ## Still need to gather
 - [x] Push the Lead-Capture repo *(pushed as `Robertkip/flyrank-capstone-lead-capture`)*
-- [ ] Make `flyrank-capstone-lead-capture` and `flyrank-w7-enrich` public *(`flyrank-capstone-social-studio` already is)*
-- [ ] Cal.com booking link, Formspree form ID, public email (placeholders in `contact/index.html`)
+- [x] Make `flyrank-capstone-lead-capture` and `flyrank-w7-enrich` public
+- [x] Public email on the contact page
+- [ ] Cal.com booking link and Formspree form ID (placeholders in `contact/index.html`)
 - [ ] Lead-Capture dashboard screenshot showing a captured, geo-enriched lead
 - [ ] Social Media Studio: screenshot of a real Mastodon post, and a clip of crash → restart → published exactly once
 - [ ] Book-Enrichment: eval results screenshot; fix or explain the cold-start timeout and re-run
